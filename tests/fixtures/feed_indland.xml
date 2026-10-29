@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SYNTHETIC test fixture. Headlines are invented and do not describe real events. -->
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Testfeed Indland</title>
+    <link>https://example.dk/indland</link>
+    <description>Syntetisk testfeed</description>
+    <item>
+      <title>Kommune vil bygge dige mod stormflod efter rekordvandstand</title>
+      <link>https://example.dk/nyheder/indland/dige-stormflod?utm_source=rss</link>
+      <guid>https://example.dk/nyheder/indland/dige-stormflod</guid>
+      <description><![CDATA[<p>Byrådet afsætter penge til <b>kystsikring</b>, efter at vandet stod højere end nogensinde.</p>]]></description>
+      <content:encoded><![CDATA[<p>FULL ARTICLE TEXT THAT MUST NEVER BE STORED.</p>]]></content:encoded>
+      <pubDate>Wed, 28 Oct 2026 08:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>Elprisen stiger kraftigt i vinter, vurderer analytikere</title>
+      <link>https://example.dk/nyheder/penge/elpris-vinter</link>
+      <guid>https://example.dk/nyheder/penge/elpris-vinter</guid>
+      <description>Husholdninger kan se frem til højere regninger, når vindproduktionen falder.</description>
+      <pubDate>Wed, 28 Oct 2026 09:30:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>Landsholdet vinder efter sent mål</title>
+      <link>https://example.dk/sport/landshold-sejr</link>
+      <description>En scoring i overtiden afgjorde kampen.</description>
+      <pubDate>Tue, 27 Oct 2026 21:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.dk/nyheder/uden-titel</link>
+      <description>Entry without a title is skipped.</description>
+    </item>
+  </channel>
+</rss>

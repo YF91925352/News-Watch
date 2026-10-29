@@ -1,0 +1,21 @@
+id,url,title,summary,relevant,topics,notes
+s01,,Regeringen præsenterer ny klimaplan med mål for 2035,Planen skal skære yderligere i udledningen af drivhusgasser.,1,klima_energi;politik,SYNTHETIC demo row
+s02,,Nyt havvindmølleprojekt i Nordsøen udskydes et år,Leverandørproblemer forsinker opstillingen af møllerne.,1,klima_energi;oekonomi,SYNTHETIC demo row
+s03,,Elprisen slår rekord i kold januar,Lav vindproduktion og høj efterspørgsel presser prisen op.,1,klima_energi;oekonomi,SYNTHETIC demo row
+s04,,Skybrud sætter kældre under vand i Aarhus,Kommunen vil se på bedre kloakering og regnvandsbassiner.,1,klima_energi,SYNTHETIC demo row
+s05,,Køer skal betale: aftale om afgift på metan fra husdyr,Landmænd får tilskud til at omlægge produktionen.,1,klima_energi;politik,SYNTHETIC - relevant without most keywords (afgift and metan)
+s06,,Fjernvarmen bliver billigere for 200.000 husstande,Et nyt overskudsvarmeanlæg fra et datacenter kobles på nettet.,1,klima_energi;oekonomi,SYNTHETIC demo row
+s07,,Grønne investeringer trækker aktiemarkedet op,Selskaber inden for vedvarende energi stiger mest.,1,klima_energi;oekonomi,SYNTHETIC demo row
+s08,,Danske kyster mister mere sand end forventet,Forskere peger på hyppigere storme og stigende havniveau.,1,klima_energi,SYNTHETIC - relevant without keywords
+s09,,Ny elbilsafgift deler partierne,Kritikere mener at den bremser salget af elbiler.,1,klima_energi;politik,SYNTHETIC demo row
+s10,,Solcelleparker møder modstand i Vestjylland,Naboer klager over udsigten og faldende huspriser.,1,klima_energi,SYNTHETIC demo row
+s11,,Klimaanlæg i nye busser går i stykker i sommervarmen,Busselskabet må sætte ekstra køretøjer ind.,0,andet,SYNTHETIC - keyword false positive (klimaanlæg)
+s12,,Energidrikke skal forbydes for børn under 15,Sundhedsstyrelsen anbefaler en aldersgrænse.,0,sundhed;politik,SYNTHETIC - keyword trap (energi)
+s13,,Landsholdet sikrer sig plads ved EM,Sejr på udebane gjorde udslaget.,0,kultur_sport,SYNTHETIC demo row
+s14,,Ventetiden på operationer stiger igen,Regionerne mangler sygeplejersker.,0,sundhed,SYNTHETIC demo row
+s15,,Mand sigtet for brandstiftelse i Odense,Politiet efterlyser vidner.,0,krimi_retsvaesen,SYNTHETIC demo row
+s16,,Nationalbanken holder renten uændret,Inflationen er faldet i tre måneder i træk.,0,oekonomi,SYNTHETIC demo row
+s17,,Folketinget vedtager ny lov om dagpenge,Ændringerne træder i kraft til sommer.,0,politik;oekonomi,SYNTHETIC demo row
+s18,,Ny AI-assistent skal hjælpe sagsbehandlere i kommunerne,Systemet testes først i tre kommuner.,0,teknologi,SYNTHETIC demo row
+s19,,Udstilling om olie og maleri trækker rekordmange gæster,Museet forlænger udstillingen.,0,kultur_sport,SYNTHETIC - keyword trap (olie)
+s20,,EU-topmøde om Ukraine ender uden aftale,Medlemslandene er uenige om finansieringen.,0,udland,SYNTHETIC demo row

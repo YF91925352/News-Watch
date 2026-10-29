@@ -1,0 +1,69 @@
+{
+  "gold": "eval/gold.csv",
+  "threshold": 0.5,
+  "results": [
+    {
+      "method": "keyword",
+      "model": "keyword-v1",
+      "n": 50,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.9,
+      "precision_at_k": 0.0,
+      "k": 10,
+      "topic_precision": 0.519,
+      "topic_recall": 0.391,
+      "topic_f1": 0.446,
+      "failed": 0,
+      "skipped_prefilter": 0,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": null,
+      "seconds": 0.06,
+      "errors": [
+        {
+          "id": "7",
+          "title": "Borgerprotester blev hørt - endnu en kommune vil droppe datacenter",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "8",
+          "title": "Økonomisk redningskrans skal redde pressede færger fra millionudgifter til brændstof",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "9",
+          "title": "Øsamfund frygter for dieseldreven livsnerve",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "11",
+          "title": "Samsø frygter eksplosion i dieselpris: Dyrere billetter og færre afgange er i spil",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "15",
+          "title": "Høje dieselpriser efterlader stribevis af ø-færger med millionhuller i budgettet",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        }
+      ]
+    }
+  ]
+}

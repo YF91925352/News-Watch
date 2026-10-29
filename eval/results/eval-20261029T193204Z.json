@@ -1,0 +1,93 @@
+{
+  "gold": "eval/gold.csv",
+  "threshold": 0.5,
+  "results": [
+    {
+      "method": "keyword",
+      "model": "keyword-v1",
+      "n": 61,
+      "precision": 1.0,
+      "recall": 0.429,
+      "f1": 0.6,
+      "accuracy": 0.869,
+      "precision_at_k": 0.6,
+      "k": 10,
+      "topic_precision": 0.538,
+      "topic_recall": 0.407,
+      "topic_f1": 0.464,
+      "failed": 0,
+      "skipped_prefilter": 0,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": null,
+      "seconds": 0.04,
+      "errors": [
+        {
+          "id": "7",
+          "title": "Borgerprotester blev hørt - endnu en kommune vil droppe datacenter",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "8",
+          "title": "Økonomisk redningskrans skal redde pressede færger fra millionudgifter til brændstof",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "9",
+          "title": "Øsamfund frygter for dieseldreven livsnerve",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "11",
+          "title": "Samsø frygter eksplosion i dieselpris: Dyrere billetter og færre afgange er i spil",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "15",
+          "title": "Høje dieselpriser efterlader stribevis af ø-færger med millionhuller i budgettet",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "83",
+          "title": "Protester fik kommune til at indstille datacenter i Holbæk - men byggeplanerne fortsætter alligevel",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "71",
+          "title": "Verdens lande kæmper for naturen, mens Danmark møder op til topmøde uden mål, rapport eller minister",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "75",
+          "title": "Kan man redde koraller ved at flytte dem?",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        }
+      ]
+    }
+  ]
+}

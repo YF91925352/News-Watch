@@ -1,0 +1,299 @@
+{
+  "gold": "eval/gold.csv",
+  "threshold": 0.5,
+  "results": [
+    {
+      "method": "keyword",
+      "model": "keyword-v1",
+      "n": 61,
+      "precision": 1.0,
+      "recall": 0.429,
+      "f1": 0.6,
+      "accuracy": 0.869,
+      "precision_at_k": 0.6,
+      "k": 10,
+      "topic_precision": 0.538,
+      "topic_recall": 0.407,
+      "topic_f1": 0.464,
+      "failed": 0,
+      "skipped_prefilter": 0,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": null,
+      "seconds": 0.25,
+      "errors": [
+        {
+          "id": "7",
+          "title": "Borgerprotester blev hørt - endnu en kommune vil droppe datacenter",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "8",
+          "title": "Økonomisk redningskrans skal redde pressede færger fra millionudgifter til brændstof",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "9",
+          "title": "Øsamfund frygter for dieseldreven livsnerve",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "11",
+          "title": "Samsø frygter eksplosion i dieselpris: Dyrere billetter og færre afgange er i spil",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "15",
+          "title": "Høje dieselpriser efterlader stribevis af ø-færger med millionhuller i budgettet",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "83",
+          "title": "Protester fik kommune til at indstille datacenter i Holbæk - men byggeplanerne fortsætter alligevel",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "71",
+          "title": "Verdens lande kæmper for naturen, mens Danmark møder op til topmøde uden mål, rapport eller minister",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        },
+        {
+          "id": "75",
+          "title": "Kan man redde koraller ved at flytte dem?",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "ok",
+          "rationale": "No brief terms matched."
+        }
+      ]
+    },
+    {
+      "method": "llm",
+      "model": "claude-haiku-5-5",
+      "n": 61,
+      "precision": 1.0,
+      "recall": 0.429,
+      "f1": 0.6,
+      "accuracy": 0.869,
+      "precision_at_k": 1.0,
+      "k": 10,
+      "topic_precision": 0.789,
+      "topic_recall": 0.698,
+      "topic_f1": 0.741,
+      "failed": 5,
+      "skipped_prefilter": 0,
+      "llm_calls": 61,
+      "input_tokens": 45528,
+      "output_tokens": 10120,
+      "cost_usd": null,
+      "seconds": 127.7,
+      "errors": [
+        {
+          "id": "7",
+          "title": "Borgerprotester blev hørt - endnu en kommune vil droppe datacenter",
+          "gold": true,
+          "relevance": 0.3,
+          "status": "ok",
+          "rationale": "The teaser covers a municipal reversal on a hyperscale data centre after citizen protest, which is political and tech-infrastructure news, with no mention of energy use, emissions, or climate."
+        },
+        {
+          "id": "8",
+          "title": "Økonomisk redningskrans skal redde pressede færger fra millionudgifter til brændstof",
+          "gold": true,
+          "relevance": 0.4,
+          "status": "ok",
+          "rationale": "The article concerns high fuel prices driving budget shortfalls for ferries and small islands, which is an indirect energy-cost link rather than a core climate or energy-policy story."
+        },
+        {
+          "id": "9",
+          "title": "Øsamfund frygter for dieseldreven livsnerve",
+          "gold": true,
+          "relevance": null,
+          "status": "failed",
+          "rationale": "parse error: no JSON object in output"
+        },
+        {
+          "id": "11",
+          "title": "Samsø frygter eksplosion i dieselpris: Dyrere billetter og færre afgange er i spil",
+          "gold": true,
+          "relevance": 0.4,
+          "status": "ok",
+          "rationale": "The article covers a diesel price rise and its budget impact on Samsø Rederi, an energy-price effect but framed mainly as a ferry operator's economic problem rather than climate or energy policy."
+        },
+        {
+          "id": "15",
+          "title": "Høje dieselpriser efterlader stribevis af ø-færger med millionhuller i budgettet",
+          "gold": true,
+          "relevance": 0.45,
+          "status": "ok",
+          "rationale": "The article covers high diesel prices (an energy price issue) hitting ferry operators' budgets, which is only indirectly related to the brief's focus on energy supply and prices."
+        },
+        {
+          "id": "26",
+          "title": "'Ingen aner, hvor rejsen fører hen', siger Preben Bang",
+          "gold": false,
+          "relevance": null,
+          "status": "failed",
+          "rationale": "parse error: no JSON object in output"
+        },
+        {
+          "id": "30",
+          "title": "Regeringen varsler forbud mod turbokyllinger: 'Fuldstændig fantastisk'",
+          "gold": false,
+          "relevance": null,
+          "status": "failed",
+          "rationale": "parse error: no JSON object in output"
+        },
+        {
+          "id": "31",
+          "title": "LYNANALYSE Troels Lund Poulsens hovedpine er langt fra ovre",
+          "gold": false,
+          "relevance": null,
+          "status": "failed",
+          "rationale": "parse error: no JSON object in output"
+        },
+        {
+          "id": "32",
+          "title": "Minister vil forbyde turbokyllinger",
+          "gold": false,
+          "relevance": null,
+          "status": "failed",
+          "rationale": "parse error: no JSON object in output"
+        },
+        {
+          "id": "83",
+          "title": "Protester fik kommune til at indstille datacenter i Holbæk - men byggeplanerne fortsætter alligevel",
+          "gold": true,
+          "relevance": 0.2,
+          "status": "ok",
+          "rationale": "The headline and teaser concern a municipality halting a Holbæk data center after protests and a contractor disputing the decision, with no mention of energy use, emissions, or climate adaptation."
+        },
+        {
+          "id": "71",
+          "title": "Verdens lande kæmper for naturen, mens Danmark møder op til topmøde uden mål, rapport eller minister",
+          "gold": true,
+          "relevance": 0.4,
+          "status": "ok",
+          "rationale": "The article concerns Denmark's unpreparedness for a UN biodiversity summit (nature policy, not climate or energy directly), with the mention of no minister or report pointing to government politics."
+        },
+        {
+          "id": "75",
+          "title": "Kan man redde koraller ved at flytte dem?",
+          "gold": true,
+          "relevance": 0.3,
+          "status": "ok",
+          "rationale": "The headline asks whether relocating corals can save them, which indirectly touches on climate-driven reef loss, but it does not mention climate, Denmark, energy or adaptation, and the teaser is empty."
+        }
+      ]
+    },
+    {
+      "method": "hybrid",
+      "model": "claude-haiku-5-5",
+      "n": 61,
+      "precision": 1.0,
+      "recall": 0.429,
+      "f1": 0.6,
+      "accuracy": 0.869,
+      "precision_at_k": 0.6,
+      "k": 10,
+      "topic_precision": 0.538,
+      "topic_recall": 0.407,
+      "topic_f1": 0.464,
+      "failed": 0,
+      "skipped_prefilter": 55,
+      "llm_calls": 6,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": null,
+      "seconds": 0.61,
+      "errors": [
+        {
+          "id": "7",
+          "title": "Borgerprotester blev hørt - endnu en kommune vil droppe datacenter",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "skipped_prefilter",
+          "rationale": "Skipped LLM: keyword prefilter score below threshold. No brief terms matched."
+        },
+        {
+          "id": "8",
+          "title": "Økonomisk redningskrans skal redde pressede færger fra millionudgifter til brændstof",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "skipped_prefilter",
+          "rationale": "Skipped LLM: keyword prefilter score below threshold. No brief terms matched."
+        },
+        {
+          "id": "9",
+          "title": "Øsamfund frygter for dieseldreven livsnerve",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "skipped_prefilter",
+          "rationale": "Skipped LLM: keyword prefilter score below threshold. No brief terms matched."
+        },
+        {
+          "id": "11",
+          "title": "Samsø frygter eksplosion i dieselpris: Dyrere billetter og færre afgange er i spil",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "skipped_prefilter",
+          "rationale": "Skipped LLM: keyword prefilter score below threshold. No brief terms matched."
+        },
+        {
+          "id": "15",
+          "title": "Høje dieselpriser efterlader stribevis af ø-færger med millionhuller i budgettet",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "skipped_prefilter",
+          "rationale": "Skipped LLM: keyword prefilter score below threshold. No brief terms matched."
+        },
+        {
+          "id": "83",
+          "title": "Protester fik kommune til at indstille datacenter i Holbæk - men byggeplanerne fortsætter alligevel",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "skipped_prefilter",
+          "rationale": "Skipped LLM: keyword prefilter score below threshold. No brief terms matched."
+        },
+        {
+          "id": "71",
+          "title": "Verdens lande kæmper for naturen, mens Danmark møder op til topmøde uden mål, rapport eller minister",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "skipped_prefilter",
+          "rationale": "Skipped LLM: keyword prefilter score below threshold. No brief terms matched."
+        },
+        {
+          "id": "75",
+          "title": "Kan man redde koraller ved at flytte dem?",
+          "gold": true,
+          "relevance": 0.0,
+          "status": "skipped_prefilter",
+          "rationale": "Skipped LLM: keyword prefilter score below threshold. No brief terms matched."
+        }
+      ]
+    }
+  ]
+}

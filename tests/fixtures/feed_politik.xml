@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SYNTHETIC test fixture. Overlaps with feed_indland.xml on purpose (same story, two sections). -->
+<rss version="2.0">
+  <channel>
+    <title>Testfeed Politik</title>
+    <link>https://example.dk/politik</link>
+    <description>Syntetisk testfeed</description>
+    <item>
+      <title>Kommune vil bygge dige mod stormflod efter rekordvandstand</title>
+      <link>https://example.dk/nyheder/indland/dige-stormflod/</link>
+      <description>Samme historie, også i politik-feedet.</description>
+      <pubDate>Wed, 28 Oct 2026 08:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>Minister fremlægger lovforslag om CO2-afgift på landbruget</title>
+      <link>https://example.dk/nyheder/politik/co2-afgift-landbrug</link>
+      <description>Forslaget skal sænke udledningen fra landbruget frem mod 2030.</description>
+      <pubDate>Wed, 28 Oct 2026 10:00:00 +0100</pubDate>
+    </item>
+  </channel>
+</rss>

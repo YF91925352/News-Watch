@@ -1,0 +1,13 @@
+# Public RSS feeds to monitor. Adding a source is a config change, not a code change.
+# Only title, link, summary (truncated) and publish time are stored - never full article text.
+# DR section feeds overlap (the same story can appear in "indland" and "politik"),
+# which is why articles are de-duplicated on the normalised URL, not per feed.
+feeds:
+  - name: DR Indland
+    url: https://www.dr.dk/nyheder/service/feeds/indland
+  - name: DR Politik
+    url: https://www.dr.dk/nyheder/service/feeds/politik
+  - name: DR Penge
+    url: https://www.dr.dk/nyheder/service/feeds/penge
+  - name: DR Viden
+    url: https://www.dr.dk/nyheder/service/feeds/viden

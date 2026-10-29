@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: newswatch
+          POSTGRES_PASSWORD: newswatch
+          POSTGRES_DB: newswatch_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U newswatch"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - run: ruff check .
+      - name: Tests (SQLite)
+        run: pytest -q
+      - name: Tests (PostgreSQL)
+        run: pytest -q
+        env:
+          TEST_DATABASE_URL: postgresql+psycopg://newswatch:newswatch@localhost:5432/newswatch_test
+      - name: Offline evaluation smoke test (fake LLM, no network, no cost)
+        run: newswatch eval --gold eval/sample_gold.csv --out-dir /tmp/eval
+        env:
+          NEWSWATCH_LLM: fake
