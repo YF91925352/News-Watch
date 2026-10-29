@@ -18,12 +18,14 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg://newswatch:newswatch@db:5432/newswatch
     ports:
-      - "8001:8000"
+      - "${NEWSWATCH_PORT:-8000}:8000"
     depends_on:
       db:
         condition: service_healthy
     restart: unless-stopped
 
+  # Fetches feeds and classifies new articles every 15 minutes.
+  # LLM classification only runs if NEWSWATCH_LLM is set in .env (default: off, so it costs nothing).
   worker:
     build: .
     env_file: .env

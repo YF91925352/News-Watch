@@ -6,3 +6,5 @@ __pycache__/
 .venv/
 eval/.cache/
 eval/to_label.csv
+eval/more.csv
+.DS_Store

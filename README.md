@@ -17,7 +17,7 @@ Python, PostgreSQL, FastAPI, Docker Compose, GitHub Actions.
 
 ```bash
 cp .env.example .env            # required; set a contact address in NEWSWATCH_USER_AGENT
-docker compose up --build       # api on :8000, worker polls feeds every 15 min
+docker compose up --build       # api on :8000 (NEWSWATCH_PORT), worker polls feeds every 15 min
 open http://localhost:8000/docs # or http://localhost:8000/ for a plain list
 ```
 
@@ -30,7 +30,7 @@ newswatch ingest
 newswatch classify --method keyword
 NEWSWATCH_LLM=fake newswatch classify --method hybrid   # offline stand-in for the LLM
 uvicorn --factory newswatch.api:app_factory
-pytest                                                   # 40 tests, SQLite, no network
+pytest                                                   # 44 tests, SQLite, no network
 ```
 
 ## How it works
@@ -88,27 +88,52 @@ NEWSWATCH_LLM=anthropic newswatch eval --gold eval/gold.csv
 
 ### Results
 
-> **TODO: fill in after labelling the real gold set and running once with the real model.**
-> The table below is the format; the numbers must come from `eval/results/*.json`.
+61 real DR headlines + teasers, labelled by hand (14 relevant). Threshold 0.5, fixed before the run.
+Run of 29 Oct 2026, prompt `relevance-v1`, thinking off, structured output
+(`eval/results/eval-20261029T213019Z.json`).
 
-| method | model | n | precision | recall | F1 | P@10 | topic F1 | LLM calls | cost (USD) |
+| method | model | precision | recall | F1 | P@10 | topic F1 | failed | LLM calls | cost (USD) |
 |---|---|---|---|---|---|---|---|---|---|
-| keyword | keyword-v1 | – | – | – | – | – | – | 0 | 0 |
-| llm | claude-haiku-5-5 | – | – | – | – | – | – | – | – |
-| hybrid | claude-haiku-5-5 | – | – | – | – | – | – | – | – |
+| keyword | keyword-v1 | 1.00 | 0.43 | 0.60 | 0.6 | 0.46 | 0 | 0 | 0 |
+| llm | claude-haiku-5-5 | 0.85 | **0.79** | **0.82** | **0.9** | **0.71** | 0 | 61 | 0.0092 |
+| hybrid | claude-haiku-5-5 | 1.00 | 0.36 | 0.53 | 0.6 | 0.46 | 0 | 6 | ≈0.001 |
 
-What I found: *TODO, 3-5 sentences. Where does the LLM win (articles that are relevant without
-using the obvious words)? Where does the keyword baseline win? How much recall does the hybrid's
-prefilter cost, and how many calls does it save?*
+What I found:
+
+* **The LLM finds what the keywords cannot.** Recall goes from 0.43 to 0.79. The keyword baseline
+  missed every story about diesel prices for island ferries and protests against data centres:
+  they are about energy but use none of the listed words. The LLM caught most of them.
+* **It pays for that with two false positives, and one of them is a misreading.** "Minister vil
+  forbyde turbokyllinger" (a ban on fast-growing broiler chickens) got 0.6 with the rationale
+  *"a minister wanting to ban turbo heaters relates to energy"*. The stored rationale is what made
+  this visible in seconds, and it is the reason results start as `unreviewed`.
+* **The hybrid is worse than either method alone.** The keyword gate drops exactly the articles the
+  LLM is good at, so the LLM never sees them; and on "Trump har sået klimatvivl" the keywords said
+  relevant but the LLM, now the final judge, said 0.4. It saves 90% of the calls, but at a cost of
+  a cent per 61 articles there is nothing worth saving. Lesson: a cheap prefilter only helps if its
+  recall is high.
+* **The remaining misses are a scope question, not only a model error.** I labelled a UN
+  biodiversity summit and data-centre stories as relevant; the brief says climate and energy, and
+  the model scored them 0.35-0.4. I kept the labels and the brief as they were rather than change
+  either after seeing the results.
+
+Limits of this evaluation: one labeller (me), 61 articles, 14 relevant, so one article moves recall
+by 7 points. Nine of the relevant articles were added after a first pass came out with only five,
+picked by me from a larger export, which may bias the set. The first LLM run (thinking on) gave
+recall 0.43 with 5 parse failures; see "What went wrong".
 
 ### Cost
 
-LLM replies are cached by (model, prompt hash, input), so re-running the evaluation after changing
-metrics is free, and changing the prompt automatically invalidates the cache. Prices are not
-hard-coded; set them from the provider's pricing page in `.env`.
+Claude Haiku 5.5 at $0.10 / $0.50 per million input / output tokens (prompts under 100k tokens).
+The evaluation run above: 66,329 input + 5,155 output tokens = **$0.0092 for 61 articles**, about
+1,090 input and 85 output tokens per article. The system prompt is most of the input.
 
-> **TODO:** one full evaluation run on N articles = X input / Y output tokens ≈ $Z.
-> Ongoing classification with the hybrid on four feeds ≈ $Z per day.
+Estimate, not measured: at roughly 100 new articles a day across four feeds, classifying all of
+them with the LLM would cost about $0.015 a day.
+
+LLM replies are cached by (model, request settings, prompt, input), so re-running the evaluation
+after changing metrics is free, and changing the prompt or settings invalidates the cache
+automatically. Prices are not hard-coded; they are set in `.env` from the provider's pricing page.
 
 ## Responsible use of the model
 
@@ -151,11 +176,21 @@ Things that broke or nearly broke while building this:
    no longer takes it. The fake client could not catch this, because it never touches the SDK; a
    test now binds the real call against the SDK's signature. Reproducibility comes from the reply
    cache instead of temperature 0.
-6. **Keywords missed most real climate/energy news.** On the real gold set the baseline had
-   precision 1.0 but recall 0.43: stories about diesel prices for island ferries and protests
-   against data centres are about energy, but use none of the listed words.
-
-> **TODO:** add what happened against the live feeds (encoding, missing dates, feed changes, etc.).
+6. **Thinking ate the output budget.** The second run had 5 of 61 replies with "no JSON object".
+   Claude Haiku 5.5 thinks by default, and thinking counts towards `max_tokens` (300), so on some
+   articles it ran out before writing any JSON. Fixed by turning thinking off (a short
+   classification does not need it), requiring a JSON schema through structured outputs, raising
+   the budget, and recording `stop_reason` on failure. Recall also went from 0.43 to 0.79 between
+   the two runs, which is a reminder that request settings are part of the model and must be
+   versioned; they are now part of the cache key.
+7. **Keywords missed most real climate/energy news.** On the real gold set the baseline had
+   precision 1.0 but recall 0.43. I did not add `diesel` or `datacenter` to the list afterwards:
+   tuning the baseline on the test set would make the comparison meaningless.
+8. **Infrastructure.** An older Docker Compose did not understand `env_file: {path, required}`;
+   the API container started before PostgreSQL finished initialising (the health check passed on
+   the Unix socket during init), so the check now uses TCP and the API restarts on failure; and
+   port 8000 was taken on my machine, so the host port is now `NEWSWATCH_PORT` in `.env`.
+   WPS and Excel write CSV with a byte-order mark, so the gold set is read with `utf-8-sig`.
 
 ## What I deliberately did not do
 
@@ -168,6 +203,9 @@ Things that broke or nearly broke while building this:
   demo, not for production.
 * **Ranking is sorted in Python** after a filtered query. Fine for thousands of rows; at scale the
   score belongs in SQL.
+* **No prompt caching or Batch API.** The system prompt is about 1,000 tokens and identical on
+  every call, so prompt caching would cut input cost, and the Batch API halves it. At one cent per
+  evaluation run it was not worth the complexity yet.
 * **No async, no task queue.** One worker in a loop is enough for four feeds every 15 minutes.
 * **No frontend framework.** `GET /` is a server-rendered list; the API is the product.
 
@@ -184,5 +222,10 @@ src/newswatch/
   api.py                   FastAPI + list page
   cli.py                   newswatch ingest | classify | run | export-labels | eval
 eval/                      gold set, labelling guide, results
-tests/                     40 tests, run on SQLite and PostgreSQL in CI
+tests/                     44 tests, run on SQLite and PostgreSQL in CI
 ```
+
+---
+
+Built with AI-assisted development (Claude). I defined the problem and the brief, labelled the gold
+set, ran it against the live feeds and the real model, and decided what to change and what not to.
